@@ -1,0 +1,88 @@
+<html>
+<head>
+    <link rel="stylesheet" href="oil baron.css">
+</head>
+<body>
+    
+<table>
+  <tr>
+    <td>
+    <H1>Oil Baron Simulator!</H1>
+    <p id = "MoneyDis">$???</p>
+  <button onclick = 'NewRig()'>make oil rig</button> <br> 
+  <p id="RigCostDis">Cost: $100</p>
+<!--do the show things-->
+  <div id="1stShow">
+  <p id="OilPriceDis">Cost per litre: $0.4</p>
+  <button onclick = 'LowerCost()'>Lower Cost</button>
+  <button onclick = 'RaiseCost()'>Raise Cost</button> 
+  <br>
+  <button onclick = 'SellSwitch()'>enable/disable selling</button> <!--make 2 seperate buttons at some point-->
+    <p id="RigDis">Number of rigs: 1</p>
+    <p id="RigEffDis">Rig Efficiency: </p>
+    <p id="OilRemDis">Unused Oil:</p>
+    <p id="OilHavDis">Stored Oil:</p>
+</div>
+</td>
+<td id = 'WorkerColumn'>
+  <H2>Employees</H2>
+  <p id = "WorkerNoDis">Number of Employees: 0</p>
+<button onclick = 'HireWorker(1)'>Hire Employees</button>
+<button onclick = 'HireWorker(10)'>+10</button><br>
+<button onclick = 'HireWorker(-1)'>Fire Employees</button>
+<button onclick = 'HireWorker(-10)'>-10</button><br>
+<p id="PayDis">Amount paid: $</p>
+<button onclick = 'LowerPay()'>Lower Pay</button>
+<button onclick = 'RaisePay()'>Raise Pay</button>
+</td>
+
+<td id = StatsColumn>
+  <h2>stats</h2>
+    <p id = "MoneyPSDis"></p>
+    <p id ="IncomeDis">placeholderText</p>
+    <p id = "OilGotPSDis"></p>
+    <p id = "OilSoldDis"></p>
+</td>
+<td>
+
+    <!--Upgrade buttons-->
+    <h2 id="UpgradeDis">Upgrades</h2>
+    <button id="StatsButton" onclick='BuyUpgrade("statsUp", 50)'><H4>Hire accountant</H4><p>($50)</p><p>displays certain stats</p></button>
+    <button id="Drill1Button" onclick='BuyUpgrade("drillUp1", 300)'><H4>Improve Drills</H4><p>($300)</p><p>Allows for access to more oil, unlocks the drill project</p></button>
+    <button id="Drill2Button" onclick='BuyUpgrade("drillUp2", 100)'><H4>Diamond-tipped</H4><p>($100)</p><p>Allows for access to more oil</p></button>
+    <button id="Lawyer1Button" onclick='BuyUpgrade("minWageUp1", 500)'><H4>Hire Lawyers to find loopholes</H4><p>($500)</p><p>Allows you to pay your workers less</p></button>
+    <button id="Pump1Button" onclick='BuyUpgrade("pumpUp1", 750)'><H4>Improve Pumps</H4><p>($750)</p><p>increases speed of pumping</p></button>
+    <!--<button id="Button" onclick = 'BuyUpgrade("")'><H4></H4><p>()</p><p></p></button>-->
+</td>
+<td id="Projects">
+    <h2>Projects</h2>
+    <!--div id="CarbonCaptureProj">
+        <p>carbon capture technology</p>
+        <input type="range" min="1" max="100" value="50" class="slider" id="CarbonCaptureSlider">
+    </div> -->
+    <div id="DrillProj">
+        <p>Drills</p>
+        <input type="range" min="0" max="20" value="0" class="slider" id="drillSlider">
+        <p id = "drillSliderPecentDis">Percentage of income:</p>
+        <p id="drillSliderInvestDis">Total invested:</p>
+    </div>
+    <!--
+    <div id="Proj">
+        <p></p>
+        <input type="range" min="1" max="100" value="50" class="slider" id="">
+    </div>
+        -->
+</td>
+  </tr>
+</table>
+
+<img id = "OilBaronImage" src ="oil baron image.jpg" alt="oil baron image">
+<img id = "HappyOilBaronImage"src ="Happy Oil Baron.png" alt="oil baron image">
+<img id = "AngryOilBaronImage"src ="AngryOilBaron.png" alt="oil baron image"><br>
+  <!--cheat box-->
+  <p>secret cheat box, please ignore</p>
+<input type="text" onkeypress="moneyCheat(100000)">
+<p id = "testDis"></p>
+<script src="oil baron.js"></script>  
+</body>
+</html>
