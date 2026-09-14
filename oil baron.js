@@ -1,4 +1,11 @@
-let rigNo = 0;
+let rigNo = 0; //reduce significance
+let rigsOwned = [];
+let rigsAvailable = [
+    //['rigname/no', cost, oilpresent]
+    [1, 100, 2500],
+    [2, 350, 5000],
+    [3, 500, 7000],
+];
 let unusedOil = 0;
 let oilHave = 0;
 let rigEff = 1;
@@ -31,6 +38,7 @@ let employees saved //maybe not neccesary
 
 const pain = 3;
 document.getElementById("1stShow").style.display = "none";
+document.getElementById("rigList").style.display = "none";
 document.getElementById("WorkerColumn").style.display = "none";
 document.getElementById("UpgradeDis").style.display = "none";
 document.getElementById("StatsButton").style.display = "none";
@@ -44,11 +52,20 @@ document.getElementById("HappyOilBaronImage").style.display = "none";
 document.getElementById("AngryOilBaronImage").style.display = "none";
 document.getElementById("Projects").style.display = "none";
 //for making a new rig
-function NewRig()
+function RigListDis() {
+    if (document.getElementById("rigList").style.display == "none") document.getElementById("rigList").style.display = "block";
+    else document.getElementById("rigList").style.display = "none";
+    
+}
+function NewRig(chosenRig)
 {
-    if (money >= rigCost)
-    {
-        rigNo = rigNo + 1
+    alert("test")
+    alert(rigsAvailable.indexOf(chosenRig));
+    rigsOwned[rigNo] = rigsAvailable.indexOf(chosenRig);
+    alert(rigsOwned[rigNo]);
+    rigNo += 1;
+        //unusedOil += 
+        /*rigNo = rigNo + 1
         unusedOil = unusedOil + oilIncrease
         document.getElementById("RigDis").innerHTML = "Number of Rigs "+rigNo;
         money -= rigCost
@@ -56,7 +73,7 @@ function NewRig()
         document.getElementById("RigCostDis").innerHTML = "Cost: $" + Math.round(rigCost);
         document.getElementById("1stShow").style.display = "block";
         document.getElementById("WorkerColumn").style.display = "block";
-    }
+        */
 }
 
 //for hiring workers
@@ -131,7 +148,6 @@ function GeneralUpdate()
             else document.getElementById("OilGotPSDis").innerHTML = "Oil gotten per second: N/A";
             document.getElementById("RigEffDis").innerHTML = "Rig Efficiency: " + Math.round(rigEff*100*100)/100 + "%";
         }
-        //alert(workerPay)
         document.getElementById("PayDis").innerHTML = "Amount Paid " + Math.round(workerNo * workerPay * 100) / 100 + " ($" + Math.round(workerPay*100)/100 + " per Employee)";
     }
         //making things show
