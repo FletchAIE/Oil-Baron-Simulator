@@ -1,11 +1,26 @@
 let rigNo = 0; //reduce significance
 let rigsOwned = [];
-let rigsAvailable = [
+let rigsID = [
     //['rigname/no', cost, oilpresent]
-    [1, 100, 2500],
-    [2, 350, 5000],
-    [3, 500, 7000],
+    0,
+    1,
+    2
 ];
+let rigsName = [
+    "placeholder0",
+    "placeholder1",
+    "placeholder2"
+]
+let rigsCost = [
+    100,
+    200,
+    300
+]
+let rigsOilSuplies = [
+    1000,
+    2000,
+    4000
+]
 let unusedOil = 0;
 let oilHave = 0;
 let rigEff = 1;
@@ -13,7 +28,6 @@ let oilPrice = 0.4;
 let demand = 1;
 let money = 200;
 let moneyMade = 1;
-let rigCost = 100;
 let pop = 0.8;
 let workerNo = 0;
 let workerPay = 0.25;
@@ -30,6 +44,7 @@ let upgrades = [];
 let projects = [];
 let drillSliderValue = document.getElementById("drillSlider").value;
 let drillInvestments = 0;
+let rigNameChangingThing = 0; //BETTER NAME
 
 /* Variables for saving progress
 let moneySaved //maybe not neccesary
@@ -51,19 +66,35 @@ document.getElementById("OilBaronImage").style.display = "block";
 document.getElementById("HappyOilBaronImage").style.display = "none";
 document.getElementById("AngryOilBaronImage").style.display = "none";
 document.getElementById("Projects").style.display = "none";
+//Actually changing things
+setInterval(Updates, 100)
+RigNameController()
+function Updates() {
+    GeneralUpdate()
+    MoneyUpdate()
+    ProjectUpdate()
+    Pay()
+}
 //for making a new rig
 function RigListDis() {
     if (document.getElementById("rigList").style.display == "none") document.getElementById("rigList").style.display = "block";
     else document.getElementById("rigList").style.display = "none";
     
 }
-function NewRig(chosenRig)
+function NewRig(chosenRigID)
 {
-    alert("test")
-    alert(rigsAvailable.indexOf(chosenRig));
-    rigsOwned[rigNo] = rigsAvailable.indexOf(chosenRig);
-    alert(rigsOwned[rigNo]);
-    rigNo += 1;
+    if (money >= rigsCost[chosenRigID]) {
+        rigsOwned[rigNo] = chosenRigID;
+        money -= rigsCost[chosenRigID];
+        unusedOil += rigsOilSuplies[chosenRigID]
+        rigNo += 1;
+        document.getElementById("rig" + chosenRigID + "Button").style.display = "none";
+        document.getElementById("rigList").style.display = "none";
+        document.getElementById("1stShow").style.display = "block";
+        document.getElementById("WorkerColumn").style.display = "block";
+        document.getElementById("RigDis").innerHTML = "Number of Rigs " + rigNo;
+    }
+    
         //unusedOil += 
         /*rigNo = rigNo + 1
         unusedOil = unusedOil + oilIncrease
@@ -120,15 +151,7 @@ function RaiseCost()
 }
 
 //updating the numbers & displays
-setInterval(Updates, 100)
 
-
-function Updates() {
-    GeneralUpdate()
-    MoneyUpdate()
-    ProjectUpdate()
-    Pay()
-}
 function GeneralUpdate()
 {
 
@@ -193,7 +216,7 @@ function MoneyUpdate()
 {
     incomeRead = moneyMade - totalPaid;
     //demand calculations
-    demand = 1/oilPrice/oilPrice
+    demand = 1 / oilPrice / oilPrice
     moneyMade = demand*oilPrice
     //selling
     if (oilHave >= 1 && canSell == true && oilHave >= demand / 10)
@@ -303,19 +326,33 @@ function SellSwitch(){ //fix, it doesn't re-enable
     }
 }
 
+//for showing projects
+function ShowProjects() {
+    if (drillInvestments >= 50 && upgrades.includes("drillUp2") == false) {
+        document.getElementById("Drill2Button").style.display = "block";
+    }
+
+}
+
+//For properly displaying the new rig buttons details 
+function DisplayRigNames(rigID) {
+    return rigsName[rigID] + ": $" + rigsCost[rigID] + ", " + rigsOilSuplies[rigID] + " gallons of oil";
+}
+function RigNameController() {
+    for (let i = 0; i < rigsID.length; i++) {
+        document.getElementById("rig" + i + "Button").innerHTML = DisplayRigNames(i);
+    }
+}
+
+
+
+
 //secret cheats
 function moneyCheat(MonGain)
 {
 
-    alert(oilHave);
+    alert(1 / oilPrice);
     money += MonGain;
-}
-function ShowProjects()
-{
-    if (drillInvestments >= 50 && upgrades.includes("drillUp2") == false) {
-        document.getElementById("Drill2Button").style.display = "block";
-    }
-        
 }
 
 
