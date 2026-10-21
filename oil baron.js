@@ -290,8 +290,6 @@ function SellSwitch(){ //fix, it doesn't re-enable
 //secret cheats
 function moneyCheat(MonGain)
 {
-
-    alert(oilHave);
     money += MonGain;
 }
 function ShowProjects()
